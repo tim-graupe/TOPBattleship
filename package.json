@@ -1,7 +1,7 @@
 {
   "name": "topbattleship",
   "version": "1.0.0",
-  "main": "ship.js",
+  "main": "main.js",
   "scripts": {
     "test": "jest"
   },

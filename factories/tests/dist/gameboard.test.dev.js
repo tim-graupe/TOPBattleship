@@ -1,8 +1,8 @@
+"use strict";
 
-const gridFactory = require("./factories/gameboard.js");
-const shipFactory = require("./factories/ship.js");
+var gridFactory = require("../gameboard.js");
 
-// test("Attack misses", () => {
+var shipFactory = require("../ship.js"); // test("Attack misses", () => {
 //     gridFactory()
 //     let grid = gridFactory()
 //     grid.placeShips()
@@ -13,16 +13,15 @@ const shipFactory = require("./factories/ship.js");
 //     expect(grid.misses.length).toBe(1)
 // })
 
-test("Expect no overlaps", () => {
-  let grid = gridFactory();
-  let takenSpots = grid.takenSpots;
-  let testPositions = grid.checkPositions();
-  grid.placeShips();
-  grid.checkPositions()
-  expect(takenSpots.length).toBe(17);
-});
 
-// test("Tracking attacks", () => {
+test("Expect no overlaps", function () {
+  var grid = gridFactory();
+  var takenSpots = grid.takenSpots;
+  var testPositions = grid.checkPositions();
+  grid.placeShips();
+  grid.checkPositions();
+  expect(takenSpots.length).toBe(17);
+}); // test("Tracking attacks", () => {
 //     gridFactory()
 //     let grid = gridFactory()
 //     grid.placeShips()
@@ -34,7 +33,6 @@ test("Expect no overlaps", () => {
 //     grid.receiveAttack(pt1)
 //     console.log(grid.attackedSqs)
 // })
-
 // test("Attack hits ship", () => {
 //     gridFactory()
 //     let grid = gridFactory()
@@ -48,12 +46,10 @@ test("Expect no overlaps", () => {
 //     expect(grid.ships[0].hits.length).toBe(2)
 //     expect(grid.ships[0].isSunk()).toBe(true)
 // })
-
 // test("Sunk ship", () => {
 //     const grid = gridFactory();
 //     const testShip = shipFactory("ptBoat", 2);
 // })
-
 // test("Ships are being placed", () => {
 //     const grid = gridFactory()
 //     grid.placeShips()

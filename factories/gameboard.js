@@ -1,4 +1,3 @@
-const { some } = require("lodash");
 const shipFactory = require("./ship.js");
 const gridFactory = () => {
   //TODO:
@@ -12,13 +11,23 @@ const gridFactory = () => {
   let takenSpots = [];
 
   //creates game board
+  // function createBoard() {
+  //   for (let i = 0; i < 10; i++) {
+  //     grid.push(["", "", "", "", "", "", "", "", "", ""]);
+  //   }
+  //   return grid;
+  // };
   function createBoard() {
     for (let i = 0; i < 10; i++) {
-      grid.push(["", "", "", "", "", "", "", "", "", ""]);
+      let subGrid = [];
+      for (let j = 0; j < 10; j++) {
+        subGrid.push(["", "", "", "", "", "", "", "", "", ""]);
+      }
+      grid.push(subGrid);
     }
     return grid;
-  };
-
+  }
+  
   const ships = [
     shipFactory("Patrol Boat", 2),
     shipFactory("Submarine", 3),
@@ -143,6 +152,7 @@ const gridFactory = () => {
     attackedSqs,
     ships,
     takenSpots,
+    grid,
     createBoard,
     receiveAttack,
     placeShips,

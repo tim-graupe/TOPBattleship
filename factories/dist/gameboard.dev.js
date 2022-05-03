@@ -1,8 +1,5 @@
 "use strict";
 
-var _require = require("lodash"),
-    some = _require.some;
-
 var shipFactory = require("./ship.js");
 
 var gridFactory = function gridFactory() {
@@ -14,16 +11,27 @@ var gridFactory = function gridFactory() {
   var misses = [];
   var attackedSqs = [];
   var takenSpots = []; //creates game board
+  // function createBoard() {
+  //   for (let i = 0; i < 10; i++) {
+  //     grid.push(["", "", "", "", "", "", "", "", "", ""]);
+  //   }
+  //   return grid;
+  // };
 
   function createBoard() {
     for (var i = 0; i < 10; i++) {
-      grid.push(["", "", "", "", "", "", "", "", "", ""]);
+      var subGrid = [];
+
+      for (var j = 0; j < 10; j++) {
+        subGrid.push(["", "", "", "", "", "", "", "", "", ""]);
+      }
+
+      grid.push(subGrid);
     }
 
     return grid;
   }
 
-  ;
   var ships = [shipFactory("Patrol Boat", 2), shipFactory("Submarine", 3), shipFactory("Cruiser", 3), shipFactory("Destroyer", 4), shipFactory("Aircraft Carrier", 5)]; //Randomly places ships. Will be used for CPU player in final product and a way for the player to randomly set their board.
 
   function placeShips() {
@@ -159,6 +167,7 @@ var gridFactory = function gridFactory() {
     attackedSqs: attackedSqs,
     ships: ships,
     takenSpots: takenSpots,
+    grid: grid,
     createBoard: createBoard,
     receiveAttack: receiveAttack,
     placeShips: placeShips,

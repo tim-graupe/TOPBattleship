@@ -6,6 +6,7 @@ var player = function player(name, turn) {
   //generates game board for player
   var playerBoard = gridFactory();
   var cpuTurn = false;
+  var playerShips = playerBoard.ships;
 
   var attack = function attack() {
     var location = [];
@@ -22,6 +23,7 @@ var player = function player(name, turn) {
 
   return {
     playerBoard: playerBoard,
+    playerShips: playerShips,
     turn: turn,
     attack: attack
   };
