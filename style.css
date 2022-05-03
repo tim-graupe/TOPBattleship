@@ -1,0 +1,30 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  
+  .container {
+    min-height: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    
+  }
+  
+  #play-area {
+    display: grid;
+    grid-template-columns: auto auto auto auto auto auto auto auto auto auto;
+  }
+
+.square {
+    display: flex;
+    width: 50px;
+    height: 50px;
+    align-items: left;
+    justify-content: left;
+    font-size: 3rem;
+    border: solid black;
+}
