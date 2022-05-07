@@ -4,7 +4,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.addClicks = addClicks;
-exports.newGameBtn = void 0;
+exports.computer = exports.human = exports.newGameBtn = void 0;
 
 var _gameboard = _interopRequireDefault(require("../factories/gameboard.js"));
 
@@ -21,25 +21,27 @@ exports.newGameBtn = newGameBtn;
 var playArea = document.getElementById("play-area");
 var board = (0, _gameboard["default"])().createBoard();
 var gf = (0, _gameboard["default"])();
+var human = (0, _player["default"])("Player", true);
+exports.human = human;
+var computer = (0, _player["default"])("Computer", false);
+exports.computer = computer;
 newGameBtn.addEventListener("click", function () {
-  (0, _gameboard["default"])();
-  gf.placeShips();
-  gf.checkPositions();
-  gf.createBoard();
+  console.log(human.playerBoard.ships);
+  computer.playerBoard.checkPositions();
   addClicks();
 });
 
 function addClicks() {
-  var squares = document.querySelectorAll("#play-area > div");
+  var squares = document.querySelectorAll('#play-area > div');
   var ships = (0, _gameboard["default"])().ships;
 
-  for (var i = 0; i < gf.ships.length; i++) {
-    console.log(gf.ships[i].coords);
+  for (var i = 0; i < computer.playerBoard.ships.length; i++) {
+    console.log(computer.playerBoard.ships[i].coords);
   }
 
   var _loop = function _loop(_i) {
     squares[_i].addEventListener("click", function () {
-      gf.receiveAttack(squares[_i].id);
+      computer.playerBoard.receiveAttack(squares[_i].id);
     });
   };
 

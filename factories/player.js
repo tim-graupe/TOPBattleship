@@ -4,8 +4,7 @@ const player = (name, turn) => {
   //generates game board for player
   const playerBoard = gridFactory();
   let cpuTurn = false;
-  let playerShips = playerBoard.ships
-
+  let playerShips = playerBoard.ships;
 
   const attack = () => {
     let location = [];
@@ -15,11 +14,10 @@ const player = (name, turn) => {
   };
 
   if (cpuTurn) {
-    attack()
-}
+    attack();
+  }
 
-
-  let placeShip = playerBoard.placeShips( )
+  let placeShip = playerBoard.placeShips();
   //alternates between true and false between turns
 
   return {

@@ -8,29 +8,28 @@ const newGameBtn = document.getElementById("new-game-btn");
 let playArea = document.getElementById("play-area");
 let board = gridFactory().createBoard();
 let gf = gridFactory();
-
-
+const human = player("Player", true)
+const computer = player("Computer", false)
 
 newGameBtn.addEventListener("click", () => {
-  gridFactory();
-  gf.placeShips();
-  gf.checkPositions();
-  gf.createBoard();
-  addClicks();
-  
+
+  console.log(human.playerBoard.ships)
+  computer.playerBoard.checkPositions()
+  addClicks()
 
 });
 
 function addClicks() {
-  let squares = document.querySelectorAll("#play-area > div");
+  let squares = document.querySelectorAll('#play-area > div');
   let ships = gridFactory().ships
   
-  for (let i = 0; i < gf.ships.length; i++){
-    console.log(gf.ships[i].coords)
+  for (let i = 0; i < computer.playerBoard.ships.length; i++){
+    console.log(computer.playerBoard.ships[i].coords)
   }
   for (let i = 0; i < squares.length; i++) {
     squares[i].addEventListener("click", () => {
-        gf.receiveAttack(squares[i].id)
+                computer.playerBoard.receiveAttack(squares[i].id)
+
         
     });
     
@@ -39,4 +38,4 @@ function addClicks() {
 
 
 
-export { newGameBtn, addClicks };
+export { newGameBtn, human, computer, addClicks };
