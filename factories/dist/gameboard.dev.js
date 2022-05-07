@@ -1,5 +1,9 @@
 "use strict";
 
+var _require = require("../src/DOM.js"),
+    showHit = _require.showHit,
+    showMiss = _require.showMiss;
+
 var shipFactory = require("./ship.js");
 
 var gridFactory = function gridFactory() {
@@ -8,7 +12,6 @@ var gridFactory = function gridFactory() {
   // should be able to place ships at specific coordinates by calling the ship factory function.
   //stores missed shots and attacked squares. Misses will be rnumCoordered with a white circle. Hits will be rnumCoordered with a red circle. Attacked squares will store board to avoid the same square being attacked again.
   var grid = [];
-  var misses = [];
   var attackedSqs = [];
   var takenSpots = []; //creates game board
   // function createBoard() {
@@ -106,19 +109,35 @@ var gridFactory = function gridFactory() {
     if (!attackedSqs.includes(JSON.stringify(attack))) {
       var target = JSON.stringify(attack);
       attackedSqs.push(target);
-      ships.forEach(function (ship) {
-        var coords = ship.coords;
+
+      for (var i = 0; i < ships.length; i++) {
+        var coords = ships[i].coords;
 
         if (coords.some(function (spot) {
-          return spot[0] === attack[0] && spot[1] === attack[1];
+          return spot[1] === attack[1] && spot[3] === attack[3];
         })) {
-          ship.hit(target);
+          ships[i].hit(target);
+          showHit(attack);
+          gameOver();
+          return;
         } else {
-          misses.push(target);
+          showMiss(attack);
         }
-      });
+      }
     }
+
+    ;
   };
+
+  function gameOver() {
+    var allSunk = ships.every(function (ship) {
+      return ship.isSunk() === true;
+    });
+
+    if (allSunk) {
+      alert("Game over!");
+    }
+  }
 
   function setHorizontal() {
     var horizontal = ships.map(function (ship) {
@@ -163,7 +182,6 @@ var gridFactory = function gridFactory() {
   }
 
   return {
-    misses: misses,
     attackedSqs: attackedSqs,
     ships: ships,
     takenSpots: takenSpots,

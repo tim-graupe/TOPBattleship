@@ -1,3 +1,4 @@
+const { showHit, showMiss } = require("../src/DOM.js");
 const shipFactory = require("./ship.js");
 const gridFactory = () => {
   //TODO:
@@ -6,7 +7,6 @@ const gridFactory = () => {
 
   //stores missed shots and attacked squares. Misses will be rnumCoordered with a white circle. Hits will be rnumCoordered with a red circle. Attacked squares will store board to avoid the same square being attacked again.
   let grid = [];
-  let misses = [];
   let attackedSqs = [];
   let takenSpots = [];
 
@@ -33,7 +33,7 @@ const gridFactory = () => {
     shipFactory("Submarine", 3),
     shipFactory("Cruiser", 3),
     shipFactory("Destroyer", 4),
-    shipFactory("Aircraft Carrier", 5),
+    shipFactory("Aircraft Carrier", 5)
   ];
 
   //Randomly places ships. Will be used for CPU player in final product and a way for the player to randomly set their board.
@@ -91,23 +91,39 @@ const gridFactory = () => {
   }
 
   const receiveAttack = (attack) => {
+
     //stringifying the attack argument causes the coords.some to not match. (either something that is should be stringified isn't or vice versa)
     //replacing attack[0] and attack[1] with target[0] and target[1] causes it to miss
     if (!attackedSqs.includes(JSON.stringify(attack))) {
       let target = JSON.stringify(attack);
       attackedSqs.push(target);
-      ships.forEach((ship) => {
-        let coords = ship.coords;
+      for (let i = 0; i < ships.length; i++) {
+        let coords = ships[i].coords;
         if (
-          coords.some((spot) => spot[0] === attack[0] && spot[1] === attack[1])
+          coords.some((spot) => spot[1] === attack[1] && spot[3] === attack[3])
         ) {
-          ship.hit(target);
-        } else {
-          misses.push(target);
+          ships[i].hit(target);
+          showHit(attack)
+          gameOver()
+          return
+        } else { 
+          showMiss(attack)
+          
         }
-      });
-    }
+      }};
+    
   };
+
+  function gameOver(){
+    let allSunk = ships.every(ship => {
+      return (ship.isSunk() === true)
+    })
+    if (allSunk){
+      alert("Game over!")
+    }
+  }
+
+
 
   function setHorizontal() {
     const horizontal = ships.map((ship) => {
@@ -148,7 +164,6 @@ const gridFactory = () => {
   }
 
   return {
-    misses,
     attackedSqs,
     ships,
     takenSpots,

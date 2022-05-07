@@ -27,4 +27,9 @@
     justify-content: left;
     font-size: 3rem;
     border: solid black;
+    color: white;
+}
+
+.square:hover {
+  background-color: aqua;
 }
