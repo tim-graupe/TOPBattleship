@@ -6,6 +6,7 @@ Object.defineProperty(exports, "__esModule", {
 exports.renderBoard = renderBoard;
 exports.showHit = showHit;
 exports.showMiss = showMiss;
+exports.showLocations = showLocations;
 
 var _gameboard = _interopRequireDefault(require("../factories/gameboard.js"));
 
@@ -18,13 +19,13 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "d
 var playArea = document.getElementById("play-area");
 var board = (0, _gameboard["default"])().createBoard();
 
-function renderBoard() {
+function renderBoard(area) {
   for (var i = 0; i < board.length; i++) {
     for (var j = 0; j < board.length; j++) {
       var square = document.createElement("div");
       square.className = "square";
       square.id = JSON.stringify([i, j]);
-      playArea.appendChild(square);
+      area.appendChild(square);
     }
   }
 }
@@ -37,4 +38,9 @@ function showHit(square) {
 function showMiss(square) {
   var squareID = document.getElementById(square);
   squareID.style.backgroundColor = "black";
+}
+
+function showLocations(square) {
+  var squareID = document.getElementById(square);
+  squareID.style.backgroundColor = "green";
 }

@@ -12,18 +12,17 @@ let gf = gridFactory();
 
 
 newGameBtn.addEventListener("click", () => {
-
   gridFactory();
   gf.placeShips();
   gf.checkPositions();
   gf.createBoard();
   addClicks();
-
+  
 
 });
 
 function addClicks() {
-  let squares = document.querySelectorAll(".square");
+  let squares = document.querySelectorAll("#play-area > div");
   let ships = gridFactory().ships
   
   for (let i = 0; i < gf.ships.length; i++){

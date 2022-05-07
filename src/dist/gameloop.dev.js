@@ -30,7 +30,7 @@ newGameBtn.addEventListener("click", function () {
 });
 
 function addClicks() {
-  var squares = document.querySelectorAll(".square");
+  var squares = document.querySelectorAll("#play-area > div");
   var ships = (0, _gameboard["default"])().ships;
 
   for (var i = 0; i < gf.ships.length; i++) {
