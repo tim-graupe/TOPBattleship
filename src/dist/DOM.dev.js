@@ -42,6 +42,4 @@ function showMiss(square) {
   squareID.style.backgroundColor = "black";
 }
 
-function showLocations() {
-  console.log("test");
-}
+function showLocations() {}

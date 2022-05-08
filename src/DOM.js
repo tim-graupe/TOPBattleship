@@ -27,7 +27,6 @@ function showMiss(square) {
 }
 
 function showLocations() {
-  console.log("test");
 
 }
 

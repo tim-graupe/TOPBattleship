@@ -9,18 +9,15 @@ var player = function player(name, turn) {
   var playerShips = playerBoard.ships;
 
   var attack = function attack() {
-    var letterCoord = Math.floor(Math.random() * 10);
-    var numCoord = Math.floor(Math.random() * 10);
-    var location = [letterCoord, numCoord];
-    console.log("location");
-  };
+    var mySqs = document.querySelectorAll("#CPU-area > div");
+    var location = mySqs[Math.floor(Math.random() * mySqs.length)];
+    return location.id;
+  }; // if (cpuTurn === true) {
+  //   attack();
+  // }
 
-  if (cpuTurn === true) {
-    attack();
-  }
 
-  var placeShip = playerBoard.placeShips(); //alternates between true and false between turns
-
+  var placeShip = playerBoard.placeShips();
   return {
     playerBoard: playerBoard,
     playerShips: playerShips,

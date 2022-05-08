@@ -7,25 +7,22 @@ const player = (name, turn) => {
   let playerShips = playerBoard.ships;
 
   const attack = () => {
-    let letterCoord = Math.floor(Math.random() * 10);
-    let numCoord = Math.floor(Math.random() * 10);
-    let location = [letterCoord, numCoord];
-    console.log("location");
+    let mySqs = document.querySelectorAll("#CPU-area > div")
+    let location = mySqs[Math.floor(Math.random() * mySqs.length)]
+   return location.id
   };
 
-  if (cpuTurn === true) {
-    attack();
-  }
-
+  // if (cpuTurn === true) {
+  //   attack();
+  // }
   let placeShip = playerBoard.placeShips();
-  //alternates between true and false between turns
 
   return {
     playerBoard,
     playerShips,
     turn,
     cpuTurn,
-    attack,
+    attack
   };
 };
 
