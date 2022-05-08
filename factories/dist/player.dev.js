@@ -9,13 +9,13 @@ var player = function player(name, turn) {
   var playerShips = playerBoard.ships;
 
   var attack = function attack() {
-    var location = [];
-    location[0] = Math.floor(Math.random() * 10);
-    location[1] = Math.floor(Math.random() * 10);
-    return location;
+    var letterCoord = Math.floor(Math.random() * 10);
+    var numCoord = Math.floor(Math.random() * 10);
+    var location = [letterCoord, numCoord];
+    console.log("location");
   };
 
-  if (cpuTurn) {
+  if (cpuTurn === true) {
     attack();
   }
 
@@ -25,6 +25,7 @@ var player = function player(name, turn) {
     playerBoard: playerBoard,
     playerShips: playerShips,
     turn: turn,
+    cpuTurn: cpuTurn,
     attack: attack
   };
 };

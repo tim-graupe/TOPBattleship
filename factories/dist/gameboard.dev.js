@@ -2,7 +2,8 @@
 
 var _require = require("../src/DOM.js"),
     showHit = _require.showHit,
-    showMiss = _require.showMiss;
+    showMiss = _require.showMiss,
+    showLocations = _require.showLocations;
 
 var shipFactory = require("./ship.js");
 

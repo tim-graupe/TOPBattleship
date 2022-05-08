@@ -20,32 +20,35 @@ var newGameBtn = document.getElementById("new-game-btn");
 exports.newGameBtn = newGameBtn;
 var playArea = document.getElementById("play-area");
 var board = (0, _gameboard["default"])().createBoard();
-var gf = (0, _gameboard["default"])();
 var human = (0, _player["default"])("Player", true);
 exports.human = human;
 var computer = (0, _player["default"])("Computer", false);
 exports.computer = computer;
 newGameBtn.addEventListener("click", function () {
-  console.log(human.playerBoard.ships);
   computer.playerBoard.checkPositions();
+  human.playerBoard.checkPositions();
+  (0, _DOM.showLocations)();
   addClicks();
 });
 
 function addClicks() {
-  var squares = document.querySelectorAll('#play-area > div');
-  var ships = (0, _gameboard["default"])().ships;
+  var squares = document.querySelectorAll("#play-area > div");
+  var mySqs = document.querySelectorAll("#CPU-area > div");
 
-  for (var i = 0; i < computer.playerBoard.ships.length; i++) {
-    console.log(computer.playerBoard.ships[i].coords);
-  }
-
-  var _loop = function _loop(_i) {
-    squares[_i].addEventListener("click", function () {
-      computer.playerBoard.receiveAttack(squares[_i].id);
+  var _loop = function _loop(i) {
+    squares[i].addEventListener("click", function () {
+      computer.playerBoard.receiveAttack(squares[i].id);
+      console.log(squares[i].id);
     });
   };
 
-  for (var _i = 0; _i < squares.length; _i++) {
-    _loop(_i);
+  for (var i = 0; i < squares.length; i++) {
+    _loop(i);
   }
-}
+} //saving for when 2 player mode is added
+//  for (let j = 0; j < mySqs.length; j++) {
+//   mySqs[j].addEventListener("click", () => {
+//     human.playerBoard.receiveAttack(mySqs[j].id);
+//     console.log(mySqs[j].id)
+//   });
+// }

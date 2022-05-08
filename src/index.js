@@ -1,6 +1,5 @@
 import { renderBoard } from "./DOM.js";
-import {addClicks} from "./gameloop.js"
 const playerBoard = document.getElementById('play-area')
 const computerBoard = document.getElementById('CPU-area')
-renderBoard(playerBoard)
-renderBoard(computerBoard)
+renderBoard(playerBoard, 0)
+renderBoard(computerBoard, 1)

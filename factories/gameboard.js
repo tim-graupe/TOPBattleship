@@ -1,4 +1,4 @@
-const { showHit, showMiss } = require("../src/DOM.js");
+const { showHit, showMiss, showLocations } = require("../src/DOM.js");
 const shipFactory = require("./ship.js");
 const gridFactory = () => {
   //TODO:
@@ -122,7 +122,6 @@ const gridFactory = () => {
       alert("Game over!")
     }
   }
-
 
 
   function setHorizontal() {

@@ -7,13 +7,13 @@ const player = (name, turn) => {
   let playerShips = playerBoard.ships;
 
   const attack = () => {
-    let location = [];
-    location[0] = Math.floor(Math.random() * 10);
-    location[1] = Math.floor(Math.random() * 10);
-    return location;
+    let letterCoord = Math.floor(Math.random() * 10);
+    let numCoord = Math.floor(Math.random() * 10);
+    let location = [letterCoord, numCoord];
+    console.log("location");
   };
 
-  if (cpuTurn) {
+  if (cpuTurn === true) {
     attack();
   }
 
@@ -24,6 +24,7 @@ const player = (name, turn) => {
     playerBoard,
     playerShips,
     turn,
+    cpuTurn,
     attack,
   };
 };
