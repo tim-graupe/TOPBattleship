@@ -19,29 +19,22 @@
 #play-area {
   float: left;
   display: grid;
-  grid-template-columns: auto auto auto auto auto auto auto auto auto auto;
+  grid-template-columns: repeat(10, 1fr);
   margin: 25px;
 
 }
 
-#play-area > *:hover {
-  background-color: aqua;
+#play-area>*:hover {
+  background-color: yellow;
 
 }
 
 #CPU-area {
   float: right;
   display: grid;
-  grid-template-columns: auto auto auto auto auto auto auto auto auto auto;
+  grid-template-columns: repeat(10, 1fr);
   margin: 25px;
 
-}
-
-
-.column {
-  width: 33%;
-  float: left;
-  /* you can optionally set a fixed height */
 }
 
 .square {
@@ -53,5 +46,5 @@
   font-size: 3rem;
   border: solid black;
   color: white;
+  background-color: aquamarine;
 }
-
