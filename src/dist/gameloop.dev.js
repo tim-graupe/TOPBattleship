@@ -23,17 +23,17 @@ exports.computer = computer;
 newGameBtn.addEventListener("click", function () {
   computer.playerBoard.checkPositions();
   human.playerBoard.checkPositions();
-  addClicks(); // showLocations();
-  //commenting out showLocations until I get work out the DOM functions for displaying player ships
+  addClicks();
+  (0, _DOM.showLocations)(); //commenting out showLocations until I get work out the DOM functions for displaying player ships
 });
 
 function addClicks() {
   var squares = document.querySelectorAll("#play-area > div");
 
   var _loop = function _loop(i) {
-    squares[i].addEventListener("click", function () {
+    squares[i].addEventListener("click", function (event) {
       computer.playerBoard.receiveAttack(squares[i].id);
-      human.playerBoard.receiveAttack(computer.attack());
+      human.playerBoard.receiveAttack(computer.attack()); // squares[i].removeEventListener('click', addEventListener)
     });
   };
 

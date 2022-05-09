@@ -11,7 +11,7 @@ newGameBtn.addEventListener("click", () => {
   computer.playerBoard.checkPositions();
   human.playerBoard.checkPositions();
   addClicks();
-  // showLocations();
+  showLocations();
   //commenting out showLocations until I get work out the DOM functions for displaying player ships
 
 });
@@ -19,10 +19,10 @@ newGameBtn.addEventListener("click", () => {
 function addClicks() {
   let squares = document.querySelectorAll("#play-area > div");
   for (let i = 0; i < squares.length; i++) {
-    squares[i].addEventListener("click", () => {
+    squares[i].addEventListener("click", (event) => {
       computer.playerBoard.receiveAttack(squares[i].id);
-      human.playerBoard.receiveAttack(computer.attack())
-
+      human.playerBoard.receiveAttack(computer.attack());
+      // squares[i].removeEventListener('click', addEventListener)
     });
   }
   //saving for when 2 player mode is added. move mySqs back to the top of this function when ready.
