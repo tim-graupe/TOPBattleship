@@ -23,9 +23,18 @@ function showHit(square) {
 
 function showMiss(square) {
   let squareID = document.getElementById(square);
-  squareID.style.backgroundColor = "black";
+  squareID.style.backgroundColor = "white";
 }
+//commenting out showLocations until I figure out the DOM, remember to export it again when ready.
+// function showLocations() {
+//   let squares = document.querySelectorAll("#CPU-area > div");
+//     for (let i = 0; i < human.playerBoard.ships.length; i++){
+//       let coords = human.playerBoard.ships[i].coords;
 
-function showLocations() {}
+//     squares.forEach(square => {
+// console.log(square.id)
+//     })
+//     }
+// }
 
-export { renderBoard, showHit, showMiss, showLocations };
+export { renderBoard, showHit, showMiss };

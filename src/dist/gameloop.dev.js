@@ -16,21 +16,19 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "d
 
 var newGameBtn = document.getElementById("new-game-btn");
 exports.newGameBtn = newGameBtn;
-var human = (0, _player["default"])("Player", true);
+var human = (0, _player["default"])("Player");
 exports.human = human;
-var computer = (0, _player["default"])("Computer", false);
+var computer = (0, _player["default"])("Computer");
 exports.computer = computer;
 newGameBtn.addEventListener("click", function () {
   computer.playerBoard.checkPositions();
   human.playerBoard.checkPositions();
-  console.log(computer.playerBoard.ships);
-  (0, _DOM.showLocations)();
-  addClicks();
+  addClicks(); // showLocations();
+  //commenting out showLocations until I get work out the DOM functions for displaying player ships
 });
 
 function addClicks() {
   var squares = document.querySelectorAll("#play-area > div");
-  var mySqs = document.querySelectorAll("#CPU-area > div");
 
   var _loop = function _loop(i) {
     squares[i].addEventListener("click", function () {
@@ -41,11 +39,13 @@ function addClicks() {
 
   for (var i = 0; i < squares.length; i++) {
     _loop(i);
-  }
-} //saving for when 2 player mode is added
-//  for (let j = 0; j < mySqs.length; j++) {
-//   mySqs[j].addEventListener("click", () => {
-//     human.playerBoard.receiveAttack(mySqs[j].id);
-//
-//   });
-// }
+  } //saving for when 2 player mode is added. move mySqs back to the top of this function when ready.
+  // let mySqs = document.querySelectorAll("#CPU-area > div")
+  //  for (let j = 0; j < mySqs.length; j++) {
+  //   mySqs[j].addEventListener("click", () => {
+  //     human.playerBoard.receiveAttack(mySqs[j].id);
+  //
+  //   });
+  // }
+
+}

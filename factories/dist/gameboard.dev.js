@@ -126,7 +126,8 @@ var gridFactory = function gridFactory() {
         }
       }
     }
-  };
+  }; //gameOver works but it still needs to disable further attacks.
+
 
   function gameOver() {
     var allSunk = ships.every(function (ship) {

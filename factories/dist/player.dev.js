@@ -2,27 +2,20 @@
 
 var gridFactory = require("./gameboard.js");
 
-var player = function player(name, turn) {
-  //generates game board for player
+var player = function player(name) {
   var playerBoard = gridFactory();
-  var cpuTurn = false;
-  var playerShips = playerBoard.ships;
+  var playerShips = playerBoard.ships; //this works for now as a random attack but eventually it should be "smart" and target adjacent squares when it hits.
 
   var attack = function attack() {
     var mySqs = document.querySelectorAll("#CPU-area > div");
     var location = mySqs[Math.floor(Math.random() * mySqs.length)];
     return location.id;
-  }; // if (cpuTurn === true) {
-  //   attack();
-  // }
-
+  };
 
   var placeShip = playerBoard.placeShips();
   return {
     playerBoard: playerBoard,
     playerShips: playerShips,
-    turn: turn,
-    cpuTurn: cpuTurn,
     attack: attack
   };
 };

@@ -6,7 +6,6 @@ Object.defineProperty(exports, "__esModule", {
 exports.renderBoard = renderBoard;
 exports.showHit = showHit;
 exports.showMiss = showMiss;
-exports.showLocations = showLocations;
 
 var _gameboard = _interopRequireDefault(require("../factories/gameboard.js"));
 
@@ -39,7 +38,14 @@ function showHit(square) {
 
 function showMiss(square) {
   var squareID = document.getElementById(square);
-  squareID.style.backgroundColor = "black";
-}
-
-function showLocations() {}
+  squareID.style.backgroundColor = "white";
+} //commenting out showLocations until I figure out the DOM, remember to export it again when ready.
+// function showLocations() {
+//   let squares = document.querySelectorAll("#CPU-area > div");
+//     for (let i = 0; i < human.playerBoard.ships.length; i++){
+//       let coords = human.playerBoard.ships[i].coords;
+//     squares.forEach(square => {
+// console.log(square.id)
+//     })
+//     }
+// }

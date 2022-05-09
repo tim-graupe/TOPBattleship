@@ -111,7 +111,7 @@ const gridFactory = () => {
       }
     }
   };
-
+  //gameOver works but it still needs to disable further attacks.
   function gameOver() {
     let allSunk = ships.every((ship) => {
       return ship.isSunk() === true;
