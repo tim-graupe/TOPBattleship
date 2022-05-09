@@ -7,9 +7,9 @@ const player = (name, turn) => {
   let playerShips = playerBoard.ships;
 
   const attack = () => {
-    let mySqs = document.querySelectorAll("#CPU-area > div")
-    let location = mySqs[Math.floor(Math.random() * mySqs.length)]
-   return location.id
+    let mySqs = document.querySelectorAll("#CPU-area > div");
+    let location = mySqs[Math.floor(Math.random() * mySqs.length)];
+    return location.id;
   };
 
   // if (cpuTurn === true) {
@@ -22,7 +22,7 @@ const player = (name, turn) => {
     playerShips,
     turn,
     cpuTurn,
-    attack
+    attack,
   };
 };
 

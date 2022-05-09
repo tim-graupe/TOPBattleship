@@ -126,8 +126,6 @@ var gridFactory = function gridFactory() {
         }
       }
     }
-
-    ;
   };
 
   function gameOver() {

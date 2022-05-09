@@ -1,3 +1,4 @@
+import gridFactory from "../factories/gameboard.js";
 import player from "../factories/player.js";
 import { showLocations } from "./DOM.js";
 
@@ -21,12 +22,6 @@ function addClicks() {
       computer.playerBoard.receiveAttack(squares[i].id);
       human.playerBoard.receiveAttack(computer.attack())
 
-    });
-  }
-  for (let j = 0; j < mySqs.length; j++) {
-    mySqs[j].addEventListener("click", () => {
-      human.playerBoard.receiveAttack(mySqs[j].id);
-  
     });
   }
 }

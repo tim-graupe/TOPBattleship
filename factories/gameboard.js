@@ -27,13 +27,13 @@ const gridFactory = () => {
     }
     return grid;
   }
-  
+
   const ships = [
     shipFactory("Patrol Boat", 2),
     shipFactory("Submarine", 3),
     shipFactory("Cruiser", 3),
     shipFactory("Destroyer", 4),
-    shipFactory("Aircraft Carrier", 5)
+    shipFactory("Aircraft Carrier", 5),
   ];
 
   //Randomly places ships. Will be used for CPU player in final product and a way for the player to randomly set their board.
@@ -43,7 +43,7 @@ const gridFactory = () => {
     }
     ships.map((ship) => {
       let setDirection = Math.floor(Math.random() * 2);
-      ship.coords = []
+      ship.coords = [];
       if (setDirection === 0) {
         //sets to horizontal
         let doggy = 0;
@@ -91,7 +91,6 @@ const gridFactory = () => {
   }
 
   const receiveAttack = (attack) => {
-
     //stringifying the attack argument causes the coords.some to not match. (either something that is should be stringified isn't or vice versa)
     //replacing attack[0] and attack[1] with target[0] and target[1] causes it to miss
     if (!attackedSqs.includes(JSON.stringify(attack))) {
@@ -103,26 +102,24 @@ const gridFactory = () => {
           coords.some((spot) => spot[1] === attack[1] && spot[3] === attack[3])
         ) {
           ships[i].hit(target);
-          showHit(attack)
-          gameOver()
-          return
-        } else { 
-          showMiss(attack)
-          
+          showHit(attack);
+          gameOver();
+          return;
+        } else {
+          showMiss(attack);
         }
-      }};
-    
+      }
+    }
   };
 
-  function gameOver(){
-    let allSunk = ships.every(ship => {
-      return (ship.isSunk() === true)
-    })
-    if (allSunk){
-      alert("Game over!")
+  function gameOver() {
+    let allSunk = ships.every((ship) => {
+      return ship.isSunk() === true;
+    });
+    if (allSunk) {
+      alert("Game over!");
     }
   }
-
 
   function setHorizontal() {
     const horizontal = ships.map((ship) => {

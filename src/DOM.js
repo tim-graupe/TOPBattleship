@@ -26,8 +26,6 @@ function showMiss(square) {
   squareID.style.backgroundColor = "black";
 }
 
-function showLocations() {
-
-}
+function showLocations() {}
 
 export { renderBoard, showHit, showMiss, showLocations };

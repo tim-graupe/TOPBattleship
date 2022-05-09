@@ -6,6 +6,8 @@ Object.defineProperty(exports, "__esModule", {
 exports.addClicks = addClicks;
 exports.computer = exports.human = exports.newGameBtn = void 0;
 
+var _gameboard = _interopRequireDefault(require("../factories/gameboard.js"));
+
 var _player = _interopRequireDefault(require("../factories/player.js"));
 
 var _DOM = require("./DOM.js");
@@ -39,16 +41,6 @@ function addClicks() {
 
   for (var i = 0; i < squares.length; i++) {
     _loop(i);
-  }
-
-  var _loop2 = function _loop2(j) {
-    mySqs[j].addEventListener("click", function () {
-      human.playerBoard.receiveAttack(mySqs[j].id);
-    });
-  };
-
-  for (var j = 0; j < mySqs.length; j++) {
-    _loop2(j);
   }
 } //saving for when 2 player mode is added
 //  for (let j = 0; j < mySqs.length; j++) {
