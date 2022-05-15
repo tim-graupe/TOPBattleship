@@ -1,26 +1,19 @@
 "use strict";
 
-var _require = require("../src/DOM.js"),
-    showHit = _require.showHit,
-    showMiss = _require.showMiss,
-    showLocations = _require.showLocations;
+var _require = require("form-data"),
+    once = _require.once;
+
+var _require2 = require("../src/DOM.js"),
+    showHit = _require2.showHit,
+    showMiss = _require2.showMiss,
+    showLocations = _require2.showLocations;
 
 var shipFactory = require("./ship.js");
 
 var gridFactory = function gridFactory() {
-  //TODO:
-  // should be able to report whether or not all of their ships have been sunk.
-  // should be able to place ships at specific coordinates by calling the ship factory function.
-  //stores missed shots and attacked squares. Misses will be rnumCoordered with a white circle. Hits will be rnumCoordered with a red circle. Attacked squares will store board to avoid the same square being attacked again.
   var grid = [];
   var attackedSqs = [];
-  var takenSpots = []; //creates game board
-  // function createBoard() {
-  //   for (let i = 0; i < 10; i++) {
-  //     grid.push(["", "", "", "", "", "", "", "", "", ""]);
-  //   }
-  //   return grid;
-  // };
+  var takenSpots = [];
 
   function createBoard() {
     for (var i = 0; i < 10; i++) {
@@ -36,7 +29,7 @@ var gridFactory = function gridFactory() {
     return grid;
   }
 
-  var ships = [shipFactory("Patrol Boat", 2), shipFactory("Submarine", 3), shipFactory("Cruiser", 3), shipFactory("Destroyer", 4), shipFactory("Aircraft Carrier", 5)]; //Randomly places ships. Will be used for CPU player in final product and a way for the player to randomly set their board.
+  var ships = [shipFactory("Patrol Boat", 2), shipFactory("Submarine", 3), shipFactory("Cruiser", 3), shipFactory("Destroyer", 4), shipFactory("Aircraft Carrier", 5)]; //Randomly places ships for the computer. Used as an option for the player
 
   function placeShips() {
     while (takenSpots.length > 0) {
@@ -105,8 +98,6 @@ var gridFactory = function gridFactory() {
   }
 
   var receiveAttack = function receiveAttack(attack) {
-    //stringifying the attack argument causes the coords.some to not match. (either something that is should be stringified isn't or vice versa)
-    //replacing attack[0] and attack[1] with target[0] and target[1] causes it to miss
     if (!attackedSqs.includes(JSON.stringify(attack))) {
       var target = JSON.stringify(attack);
       attackedSqs.push(target);
@@ -137,49 +128,54 @@ var gridFactory = function gridFactory() {
     if (allSunk) {
       alert("Game over!");
     }
-  }
+  } // function setHorizontal(ship) {
+  //   console.log(ship.name)
+  //   let squares = document.querySelectorAll("#CPU-area > div");
+  //   for (let i = 0; i < squares.length; i++) {
+  //     squares[i].addEventListener("click", () => {
+  //       let letterCoord = JSON.parse(squares[i].id[1]);
+  //       let numCoord = JSON.parse(squares[i].id[3]);
+  //       let doggy = 0;
+  //       let hitpoints = ship.hitpoints;
+  //       for (let j = 0; j < hitpoints; j++) {
+  //         if (numCoord + j > 9) {
+  //           doggy += 1;
+  //           ship.coords.push(JSON.stringify([letterCoord, numCoord - doggy]));
+  //           takenSpots.push(JSON.stringify([letterCoord, numCoord - doggy]));
+  //         } else {
+  //           ship.coords.push(JSON.stringify([letterCoord, numCoord + j]));
+  //           takenSpots.push(JSON.stringify([letterCoord, numCoord + j]));
+  //         }
+  //       }
+  //       showLocations();
+  //     }, {once: true});
+  //   }
+  // }
+  // function setVertical(ship) {
+  //   console.log(ship.name)
+  //   let squares = document.querySelectorAll("#CPU-area > div");
+  //   for (let i = 0; i < squares.length; i++) {
+  //     squares[i].addEventListener("click", () => {
+  //       let letterCoord = JSON.parse(squares[i].id[1]);
+  //       let numCoord = JSON.parse(squares[i].id[3]);
+  //       let doggy = 0;
+  //       let hitpoints = ship.hitpoints;
+  //       for (let j = 0; j < hitpoints; j++) {
+  //         if (letterCoord + j > 9) {
+  //           doggy += 1;
+  //           ship.coords.push(JSON.stringify([letterCoord - doggy, numCoord]));
+  //           takenSpots.push(JSON.stringify([letterCoord - doggy, numCoord]));
+  //         } else {
+  //           ship.coords.push(JSON.stringify([letterCoord + j, numCoord]));
+  //           takenSpots.push(JSON.stringify([letterCoord + j, numCoord]));
+  //         }
+  //       }
+  //       showLocations();
+  //       console.log(ship.coords + ship.name)
+  //     }, {once: true});
+  //   }
+  // }
 
-  function setHorizontal() {
-    var horizontal = ships.map(function (ship) {
-      var doggy = 0;
-      var hitpoints = ship.hitpoints;
-      var letterCoord = Math.floor(Math.random() * 10);
-      var numCoord = Math.floor(Math.random() * 10);
-
-      for (var i = 0; i < hitpoints; i++) {
-        if (numCoord + i > 9) {
-          doggy += 1;
-          ship.coords.push(JSON.stringify([letterCoord, numCoord - doggy]));
-        } else {
-          ship.coords.push(JSON.stringify([letterCoord, numCoord + i]));
-        }
-      }
-
-      return ship.coords;
-    });
-    return horizontal;
-  }
-
-  function setVertical() {
-    var vertical = ships.map(function (ship) {
-      var doggy = 0;
-      var hitpoints = ship.hitpoints;
-      var letterCoord = Math.floor(Math.random() * 10);
-      var numCoord = Math.floor(Math.random() * 10);
-
-      for (var i = 0; i < hitpoints; i++) {
-        if (letterCoord + i > 9) {
-          doggy += 1;
-          ship.coords.push(JSON.stringify([letterCoord - doggy, numCoord]));
-        } else {
-          ship.coords.push(JSON.stringify([letterCoord + i, numCoord]));
-        }
-      }
-
-      return ship.coords;
-    });
-    return vertical;
-  }
 
   return {
     attackedSqs: attackedSqs,
@@ -189,8 +185,8 @@ var gridFactory = function gridFactory() {
     createBoard: createBoard,
     receiveAttack: receiveAttack,
     placeShips: placeShips,
-    setHorizontal: setHorizontal,
-    setVertical: setVertical,
+    // setHorizontal,
+    // setVertical,
     checkPositions: checkPositions
   };
 };

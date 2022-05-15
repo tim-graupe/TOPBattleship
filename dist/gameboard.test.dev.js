@@ -14,14 +14,14 @@ var shipFactory = require("./factories/ship.js"); // test("Attack misses", () =>
 // })
 
 
-test("Expect no overlaps", function () {
-  var grid = gridFactory();
-  var takenSpots = grid.takenSpots;
-  var testPositions = grid.checkPositions();
-  grid.placeShips();
-  grid.checkPositions();
-  expect(takenSpots.length).toBe(17);
-}); // test("Tracking attacks", () => {
+// test("Expect no overlaps", function () {
+//   var grid = gridFactory();
+//   var takenSpots = grid.takenSpots;
+//   var testPositions = grid.checkPositions();
+//   grid.placeShips();
+//   grid.checkPositions();
+//   expect(takenSpots.length).toBe(17);
+// }); // test("Tracking attacks", () => {
 //     gridFactory()
 //     let grid = gridFactory()
 //     grid.placeShips()

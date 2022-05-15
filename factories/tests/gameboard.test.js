@@ -13,14 +13,14 @@ const shipFactory = require("../ship.js");
 //     expect(grid.misses.length).toBe(1)
 // })
 
-test("Expect no overlaps", () => {
-  let grid = gridFactory();
-  let takenSpots = grid.takenSpots;
-  let testPositions = grid.checkPositions();
-  grid.placeShips();
-  grid.checkPositions()
-  expect(takenSpots.length).toBe(17);
-});
+// test("Expect no overlaps", () => {
+//   let grid = gridFactory();
+//   let takenSpots = grid.takenSpots;
+//   let testPositions = grid.checkPositions();
+//   grid.placeShips();
+//   grid.checkPositions()
+//   expect(takenSpots.length).toBe(17);
+// });
 
 // test("Tracking attacks", () => {
 //     gridFactory()

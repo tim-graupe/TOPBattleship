@@ -107,61 +107,54 @@ const gridFactory = () => {
       alert("Game over!");
     }
   }
+//
+  function setHorizontal(ship) {
+    let squares = document.querySelectorAll("#CPU-area > div");
+    for (let i = 0; i < squares.length; i++) {
+      squares[i].addEventListener("click", () => {
+        let letterCoord = JSON.parse(squares[i].id[1]);
+        let numCoord = JSON.parse(squares[i].id[3]);
+        let doggy = 0;
+        let hitpoints = ship.hitpoints;
 
-  // function setHorizontal(ship) {
-  //   console.log(ship.name)
+        for (let j = 0; j < hitpoints; j++) {
+          if (numCoord + j > 9) {
+            doggy += 1;
+            ship.coords.push(JSON.stringify([letterCoord, numCoord - doggy]));
+            takenSpots.push(JSON.stringify([letterCoord, numCoord - doggy]));
+          } else {
+            ship.coords.push(JSON.stringify([letterCoord, numCoord + j]));
+            takenSpots.push(JSON.stringify([letterCoord, numCoord + j]));
+          }
+        }
+        showLocations();
+      });
+    }
+  }
 
-  //   let squares = document.querySelectorAll("#CPU-area > div");
-  //   for (let i = 0; i < squares.length; i++) {
-  //     squares[i].addEventListener("click", () => {
-  //       let letterCoord = JSON.parse(squares[i].id[1]);
-  //       let numCoord = JSON.parse(squares[i].id[3]);
-  //       let doggy = 0;
-  //       let hitpoints = ship.hitpoints;
+  function setVertical(ship) {
+    let squares = document.querySelectorAll("#CPU-area > div");
+    for (let i = 0; i < squares.length; i++) {
+      squares[i].addEventListener("click", () => {
+        let letterCoord = JSON.parse(squares[i].id[1]);
+        let numCoord = JSON.parse(squares[i].id[3]);
+        let doggy = 0;
+        let hitpoints = ship.hitpoints;
 
-  //       for (let j = 0; j < hitpoints; j++) {
-  //         if (numCoord + j > 9) {
-  //           doggy += 1;
-  //           ship.coords.push(JSON.stringify([letterCoord, numCoord - doggy]));
-  //           takenSpots.push(JSON.stringify([letterCoord, numCoord - doggy]));
-  //         } else {
-  //           ship.coords.push(JSON.stringify([letterCoord, numCoord + j]));
-  //           takenSpots.push(JSON.stringify([letterCoord, numCoord + j]));
-  //         }
-  //       }
-  //       showLocations();
-
-  //     }, {once: true});
-  //   }
-  // }
-
-  // function setVertical(ship) {
-  //   console.log(ship.name)
-  //   let squares = document.querySelectorAll("#CPU-area > div");
-  //   for (let i = 0; i < squares.length; i++) {
-  //     squares[i].addEventListener("click", () => {
-  //       let letterCoord = JSON.parse(squares[i].id[1]);
-  //       let numCoord = JSON.parse(squares[i].id[3]);
-  //       let doggy = 0;
-  //       let hitpoints = ship.hitpoints;
-
-  //       for (let j = 0; j < hitpoints; j++) {
-  //         if (letterCoord + j > 9) {
-  //           doggy += 1;
-  //           ship.coords.push(JSON.stringify([letterCoord - doggy, numCoord]));
-  //           takenSpots.push(JSON.stringify([letterCoord - doggy, numCoord]));
-  //         } else {
-  //           ship.coords.push(JSON.stringify([letterCoord + j, numCoord]));
-  //           takenSpots.push(JSON.stringify([letterCoord + j, numCoord]));
-  //         }
-  //       }
-        
-  //       showLocations();
-  //       console.log(ship.coords + ship.name)
-
-  //     }, {once: true});
-  //   }
-  // }
+        for (let j = 0; j < hitpoints; j++) {
+          if (letterCoord + j > 9) {
+            doggy += 1;
+            ship.coords.push(JSON.stringify([letterCoord - doggy, numCoord]));
+            takenSpots.push(JSON.stringify([letterCoord - doggy, numCoord]));
+          } else {
+            ship.coords.push(JSON.stringify([letterCoord + j, numCoord]));
+            takenSpots.push(JSON.stringify([letterCoord + j, numCoord]));
+          }
+        }
+        showLocations();
+      });
+    }
+  }
 
   return {
     attackedSqs,
@@ -171,8 +164,8 @@ const gridFactory = () => {
     createBoard,
     receiveAttack,
     placeShips,
-    // setHorizontal,
-    // setVertical,
+    setHorizontal,
+    setVertical,
     checkPositions,
   };
 };

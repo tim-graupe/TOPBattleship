@@ -11,7 +11,6 @@ const player = (name) => {
     return location.id;
   };
 
-  let placeShip = playerBoard.placeShips();
 
   return {
     playerBoard,

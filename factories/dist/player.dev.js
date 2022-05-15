@@ -12,7 +12,6 @@ var player = function player(name) {
     return location.id;
   };
 
-  var placeShip = playerBoard.placeShips();
   return {
     playerBoard: playerBoard,
     playerShips: playerShips,

@@ -12,16 +12,15 @@ var shipFactory = require("../ship.js"); // test("Attack misses", () => {
 //     console.log(grid.misses)
 //     expect(grid.misses.length).toBe(1)
 // })
-
-
-test("Expect no overlaps", function () {
-  var grid = gridFactory();
-  var takenSpots = grid.takenSpots;
-  var testPositions = grid.checkPositions();
-  grid.placeShips();
-  grid.checkPositions();
-  expect(takenSpots.length).toBe(17);
-}); // test("Tracking attacks", () => {
+// test("Expect no overlaps", () => {
+//   let grid = gridFactory();
+//   let takenSpots = grid.takenSpots;
+//   let testPositions = grid.checkPositions();
+//   grid.placeShips();
+//   grid.checkPositions()
+//   expect(takenSpots.length).toBe(17);
+// });
+// test("Tracking attacks", () => {
 //     gridFactory()
 //     let grid = gridFactory()
 //     grid.placeShips()
